@@ -1,0 +1,44 @@
+<!-- Точка входу інтерфейсу SideNotes з локальною політикою CSP. -->
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>SideNotes</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/panel.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body class="dark handle" data-edge="right">
+  <div id="handle" title="Відкрити нотатки"></div>
+  <main id="panel">
+    <div id="grip" data-part="depth" title="Потягни, щоб змінити розмір"></div>
+    <div class="gripe" data-part="start"></div>
+    <div class="gripe" data-part="end"></div>
+    <div id="float-grips" aria-hidden="true">
+      <i data-float-part="left"></i><i data-float-part="right"></i>
+      <i data-float-part="top"></i><i data-float-part="bottom"></i>
+      <i data-float-part="top-left"></i><i data-float-part="top-right"></i>
+      <i data-float-part="bottom-left"></i><i data-float-part="bottom-right"></i>
+    </div>
+    <header>
+      <button class="ib" id="b-list" title="Усі нотатки"></button>
+      <div id="title">Нотатка</div>
+      <button class="ib" id="b-new" title="Нова нотатка (Ctrl+N)"></button>
+      <button class="ib" id="b-pin" title="Не ховати автоматично"></button>
+      <button class="ib" id="b-set" title="Налаштування"></button>
+      <button class="ib" id="b-fold" title="Згорнути (Esc)"></button>
+    </header>
+    <section class="view" id="v-editor">
+      <textarea id="ed" spellcheck="false" placeholder="Пиши тут…"></textarea>
+      <div class="meta"><span id="words"></span><span id="saved"></span></div>
+    </section>
+    <section class="view" id="v-list">
+      <input class="search" id="q" placeholder="Пошук по нотатках">
+      <div class="list" id="list"></div>
+    </section>
+    <section class="view" id="v-settings"></section>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

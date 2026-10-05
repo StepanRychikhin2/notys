@@ -1,0 +1,34 @@
+/* Описує панель, переходи, ручку згортання та захват зміни розміру. */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: transparent; }
+
+/* Анімація лишається CSS transform без перерахунку розмірів. */
+#panel { position: fixed; inset: 0; display: flex; flex-direction: column; background: var(--bg);
+  border: 1px solid var(--line); will-change: transform;
+  transition: transform .24s cubic-bezier(.55, 0, .8, .3); }
+body.open #panel { transform: none; transition: transform .42s cubic-bezier(.16, 1, .3, 1); }
+body[data-edge=right] #panel { border-radius: 16px 0 0 16px; border-right: 0; }
+body[data-edge=left] #panel { border-radius: 0 16px 16px 0; border-left: 0; }
+body[data-edge=top] #panel { border-radius: 0 0 16px 16px; border-top: 0; }
+body[data-edge=right]:not(.open) #panel { transform: translateX(100%); }
+body[data-edge=left]:not(.open) #panel { transform: translateX(-100%); }
+body[data-edge=top]:not(.open) #panel { transform: translateY(-100%); }
+body.handle #panel { display: none; }
+
+#handle { display: none; position: fixed; inset: 0; background: var(--ac); opacity: .75; cursor: pointer; transition: opacity .15s; }
+#handle:hover { opacity: 1; }
+body.handle #handle { display: block; }
+body[data-edge=right] #handle { border-radius: 8px 0 0 8px; }
+body[data-edge=left] #handle { border-radius: 0 8px 8px 0; }
+body[data-edge=top] #handle { border-radius: 0 0 8px 8px; }
+
+#grip { position: absolute; z-index: 5; }
+#grip::after { content: ''; position: absolute; border-radius: 3px; background: var(--ac); opacity: 0; transition: opacity .15s; }
+#grip:hover::after, body.dragging #grip::after { opacity: .7; }
+body[data-edge=right] #grip { left: 0; top: 0; bottom: 0; width: 9px; cursor: ew-resize; }
+body[data-edge=left] #grip { right: 0; top: 0; bottom: 0; width: 9px; cursor: ew-resize; }
+body[data-edge=top] #grip { left: 0; right: 0; bottom: 0; height: 9px; cursor: ns-resize; }
+body[data-edge=right] #grip::after { left: 2px; top: 50%; height: 56px; width: 3px; margin-top: -28px; }
+body[data-edge=left] #grip::after { right: 2px; top: 50%; height: 56px; width: 3px; margin-top: -28px; }
+body[data-edge=top] #grip::after { bottom: 2px; left: 50%; width: 56px; height: 3px; margin-left: -28px; }
+@media (prefers-reduced-motion: reduce) { #panel, body.open #panel { transition-duration: .01s; } }

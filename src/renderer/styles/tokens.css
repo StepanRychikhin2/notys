@@ -1,0 +1,5 @@
+/* Зберігає палітри тем і типографіку оригінального інтерфейсу. */
+body { --font: 'Segoe UI Variable Text', 'Segoe UI', sans-serif; --fs: 15px;
+  font: 14px/1.45 var(--font); color: var(--fg); -webkit-font-smoothing: antialiased; user-select: none; }
+body.dark { --bg: #17181b; --s1: #1f2024; --s2: #292a30; --line: #2b2d33; --fg: #e9e8e4; --mut: #8c8d96; --ac: #86c1a6; --acfg: #0d1a14; }
+body.light { --bg: #f6f6f4; --s1: #ecece9; --s2: #e1e1dd; --line: #dcdcd7; --fg: #202124; --mut: #7b7d85; --ac: #2f7a5d; --acfg: #fff; }

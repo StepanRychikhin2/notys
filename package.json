@@ -1,0 +1,21 @@
+{
+  "name": "notys",
+  "productName": "Notys",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Український блокнот, що прилипає до краю екрана",
+  "author": "Notys",
+  "main": "src/main/index.js",
+  "type": "commonjs",
+  "scripts": { "start": "electron .", "package": "electron-builder --dir", "make": "electron-builder --win nsis", "dist": "electron-builder --win nsis" },
+  "devDependencies": { "electron": "44.5.1", "electron-builder": "^26.0.12" },
+  "build": {
+    "appId": "ua.notys.desktop",
+    "productName": "Notys",
+    "asar": true,
+    "directories": { "output": "dist" },
+    "files": ["src/**/*", "assets/**/*", "package.json"],
+    "win": { "target": "nsis", "icon": "assets/icon.png" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "createStartMenuShortcut": true }
+  }
+}
